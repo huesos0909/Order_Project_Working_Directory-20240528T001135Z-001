@@ -53,8 +53,8 @@ class All_Products_DB():
             product_details += str(rec)
         return (star_line+product_details+star_line)
 
-'''
-all_recs = All_Products_DB()
-all_recs.read_all_products()
-for rec in all_recs.all_products:
-    print (rec.name)'''
+
+# all_recs = All_Products_DB()
+# all_recs.read_all_products()
+# for rec in all_recs.all_products:
+#     print (rec.name)
