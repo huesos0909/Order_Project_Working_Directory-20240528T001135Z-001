@@ -8,11 +8,26 @@ class All_Products_UI:
     #appends a new product to the products.txt file
     def input_a_product(self):
         name = input("Enter name of a product: ")
-        unit_price=float(input("Enter the unit price: "))
-        stock_count = int(input("Enter the stock count: "))
+        while True:
+            try:
+                unit_price=float(input("Enter the unit price: "))
+                break
+            except Exception as e:
+                print('Invalid input: unit price must be decimal')
+        while True:
+            try:
+                stock_count = int(input("Enter the stock count: "))
+                break
+            except Exception as e:
+                print('Invalid input: stock count must be integer')
         p = Product_DB(name,unit_price,stock_count)
         self.all_products_db.save_new_product(p)
             
+    def display_products(self):
+        for product in self.all_products_db.all_products:
+            print(f'Name: {product.name}, unit price: {product.unit_price}')
+
+        #print(self.all_products_db.all_products) #TODO: add a method here
     '''
     def update_a_product(self)->bool:
         is_updated=False
@@ -56,21 +71,23 @@ class All_Products_UI:
                     if change_price not in ['y', 'n']:
                         raise ValueError("Please type 'Y' for yes or 'N' for no.")
                     if change_price == 'y':
-                        try:
-                            p.unit_price = float(input("Enter new unit price: "))
-                        except ValueError:
-                            print("Please use only numbers for the unit price.")
-                            continue
+                        while True:
+                            try:
+                                p.unit_price = float(input("Enter new unit price: "))
+                                break
+                            except Exception as e:
+                                print("Please use only numbers for the unit price.")
 
                     change_stock = input("Do you want to change the stock count (Y/N)? ").strip().lower()
                     if change_stock not in ['y', 'n']:
                         raise ValueError("Please type 'Y' for yes or 'N' for no.")
                     if change_stock == 'y':
-                        try:
-                            p.stock_quantity = int(input("Enter new stock count: "))
-                        except ValueError:
-                            print("Please use only numbers for the stock count.")
-                            continue
+                        while True:
+                            try:
+                                p.stock_quantity = int(input("Enter new stock count: "))
+                                break
+                            except Exception as e:
+                                print("Please use only numbers for the stock count.")
 
                     p.update_this_product_in_file()
                     is_updated = True

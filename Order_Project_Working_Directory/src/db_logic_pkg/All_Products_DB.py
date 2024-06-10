@@ -33,7 +33,7 @@ class All_Products_DB():
                 product = Product_DB.read_product(offset,bytes=Product_DB.rec_length)
                 self.all_products.append(product)
                 offset=offset+1+Product_DB.rec_length
-            except StopIteration: #When end of file is encountered, StopIteration exception is raised.
+            except Exception as e: #When end of file is encountered, StopIteration exception is raised.
                 print("Error while reading all recs in product.txt")
 
     #overwrite the file with the data in all_products 

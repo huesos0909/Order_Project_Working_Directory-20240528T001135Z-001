@@ -10,7 +10,7 @@ class Order:
 
     def __init__(self, customer:Customer):
         Order.order_num +=1
-        self.order_id=str(Order.order_num)
+        self.order_id=str(int(round(datetime.now().timestamp())))
         self.customer = customer
         self.order_date= datetime.now()
         self.items = []  # Initialize an empty list to store order items

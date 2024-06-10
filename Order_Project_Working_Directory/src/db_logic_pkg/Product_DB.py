@@ -1,5 +1,7 @@
 import os
 import sys
+
+
 class Product_DB():
     file_path ='.'+os.sep+'assets'+os.sep+'data_files'+os.sep
     file_name= 'products.txt'
@@ -25,6 +27,7 @@ class Product_DB():
     def save(self):
         try:
             #create file if not created already
+            print(Product_DB.file_path+ Product_DB.file_name)
             if not os.path.isfile(Product_DB.file_path+ Product_DB.file_name):       
                 f = open(Product_DB.file_path+ Product_DB.file_name, 'x')
                 f.close()
@@ -42,11 +45,13 @@ class Product_DB():
     @staticmethod
     def read_product(offset:int, bytes:int):
         try:
-            f=open(Product_DB.file_path+ Product_DB.file_name, "r")
+            f=open(Product_DB.file_path+ Product_DB.file_name, "r+")
+            print(Product_DB.file_path+ Product_DB.file_name)
             #position file pointer to read from offset bytes from the begining of the file
             f.seek(offset,0)
             s= f.read(bytes)
             tokens = s.split(',')
+            print(f'tokens read: {tokens}')
             tokens[0]=tokens[0].strip() #name
             tokens[1]=tokens[1].strip() #unit price
             tokens[2]=tokens[2].strip() #quantity

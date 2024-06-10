@@ -2,7 +2,8 @@ from datetime import date
 from datetime import datetime
 class Customer:
     this_year = datetime.now().year
-    cust_id_base =  "Cust_"+str(this_year)
+    timestamp = int(round(datetime.now().timestamp()))
+    cust_id_base =  "Cust_"+str(timestamp)
     cust_num=0 #ideally this should be initialized from a file
 
      
